@@ -194,7 +194,7 @@ Dengan demikian, satu tipe `Komputer` dapat digunakan untuk menangani beberapa j
 
 Program dimulai dengan menjalankan class `Warnet`. Setelah program dijalankan, sistem akan menampilkan menu utama yang berisi beberapa pilihan untuk mengelola komputer, melakukan booking, melihat transaksi, dan keluar dari program.
 
-[ss menu utama]
+<img width="246" height="200" alt="image" src="https://github.com/user-attachments/assets/6cd1bc47-4ee2-4295-af5c-b63cdc1c98b1" />
 
 User dapat memilih menu dengan memasukkan nomor sesuai pilihan yang tersedia. Program menggunakan perulangan `while` sehingga menu utama akan terus ditampilkan sampai user memilih menu keluar.
 
@@ -216,7 +216,7 @@ Informasi yang ditampilkan meliputi:
 - Kategori komputer
 - Status komputer
 
-[ss menu lihat komputer]
+<img width="475" height="272" alt="image" src="https://github.com/user-attachments/assets/730a2a44-66be-421f-84e2-f9a8958aad77" />
 
 Pada menu ini, komputer Reguler dan komputer VIP ditampilkan menggunakan method `tampilkanInfo()` yang terdapat pada class `Komputer`.
 
@@ -228,19 +228,13 @@ Karena `KomputerReguler` dan `KomputerVIP` memiliki implementasi method yang ber
 
 Menu **Booking Komputer** digunakan untuk melakukan penyewaan komputer oleh pelanggan.
 
-Pertama, user memasukkan nomor komputer yang ingin digunakan.
+1. Pertama, user memasukkan nomor komputer yang ingin digunakan.
 
-[ss pilih komputer booking]
+2. Program kemudian melakukan pengecekan terhadap komputer tersebut. Jika nomor komputer tidak ditemukan atau komputer sedang digunakan, program akan menampilkan pesan dan proses booking tidak dapat dilanjutkan.
 
-Program kemudian melakukan pengecekan terhadap komputer tersebut. Jika nomor komputer tidak ditemukan atau komputer sedang digunakan, program akan menampilkan pesan dan proses booking tidak dapat dilanjutkan.
+3. Jika komputer tersedia, user diminta memasukkan nama pelanggan dan durasi penggunaan komputer.
 
-[ss validasi komputer booking]
-
-Jika komputer tersedia, user diminta memasukkan nama pelanggan dan durasi penggunaan komputer.
-
-[ss input data booking]
-
-Setelah seluruh data dimasukkan, program menghitung total biaya berdasarkan durasi penggunaan dan harga komputer per jam.
+4. Setelah seluruh data dimasukkan, program menghitung total biaya berdasarkan durasi penggunaan dan harga komputer per jam.
 
 Rumus yang digunakan adalah:
 
@@ -248,9 +242,10 @@ Rumus yang digunakan adalah:
 Total Bayar = Durasi × Harga per Jam
 ```
 
-Setelah proses berhasil, status komputer akan berubah menjadi sedang digunakan dan data transaksi akan disimpan ke dalam `TransaksiService`.
+<img width="432" height="119" alt="image" src="https://github.com/user-attachments/assets/ca3320ff-c475-4e45-af3c-e570e974ad15" />
 
-[ss booking berhasil]
+
+Setelah proses berhasil, status komputer akan berubah menjadi sedang digunakan dan data transaksi akan disimpan ke dalam `TransaksiService`.
 
 ---
 
