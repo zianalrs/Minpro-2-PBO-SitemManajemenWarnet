@@ -270,7 +270,7 @@ Menu **Kelola Komputer** digunakan untuk mengelola data komputer yang terdapat p
 
 Pada menu ini terdapat beberapa pilihan, yaitu menambah, mengubah, menghapus, dan mengosongkan komputer.
 
-[ss menu kelola komputer]
+<img width="252" height="204" alt="image" src="https://github.com/user-attachments/assets/26e980db-1664-4d76-8f8c-89662d82d25d" />
 
 ---
 
@@ -290,17 +290,11 @@ Jenis komputer yang tersedia adalah:
 - Reguler
 - VIP
 
-[ss tambah komputer]
+<img width="367" height="140" alt="image" src="https://github.com/user-attachments/assets/3062d644-a43f-42b6-bbca-2a4a77a95131" />
 
-Setelah data dimasukkan, program akan melakukan validasi terhadap data tersebut.
-
-Program juga melakukan pengecekan terhadap nomor komputer. Jika nomor komputer sudah digunakan, komputer baru tidak dapat ditambahkan dengan nomor yang sama.
-
-[ss validasi nomor komputer]
+Setelah data dimasukkan, program akan melakukan validasi terhadap data tersebut, selain itu program juga melakukan pengecekan terhadap nomor komputer. Jika nomor komputer sudah digunakan, komputer baru tidak dapat ditambahkan dengan nomor yang sama.
 
 Jika seluruh data valid, komputer akan ditambahkan ke dalam `ArrayList` dan dapat dilihat melalui menu Lihat Komputer.
-
-[ss tambah komputer berhasil]
 
 ---
 
