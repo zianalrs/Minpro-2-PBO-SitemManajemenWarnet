@@ -81,6 +81,37 @@ Program memiliki beberapa fitur utama, yaitu:
 
 ---
 
+# Penerapan Encapsulation
+
+Encapsulation diterapkan dengan menggunakan access modifier `private` pada atribut dalam class `Komputer`, seperti `nomor`, `spesifikasi`, `hargaPerJam`, dan `sedangDipakai`.
+
+```java
+private int nomor;
+private String spesifikasi;
+private double hargaPerJam;
+private boolean sedangDipakai;
+```
+
+Atribut tersebut tidak dapat diakses secara langsung dari luar class. Untuk mengakses atau mengubah nilainya, program menggunakan method getter dan setter.
+
+Contohnya:
+
+```java
+public int getNomor() {
+    return nomor;
+}
+
+public void setNomor(int nomor) {
+    this.nomor = nomor;
+}
+```
+
+Dengan demikian, data pada object `Komputer` dapat dikontrol melalui method yang telah disediakan.
+
+[ss kode encapsulation]
+
+---
+
 # Penerapan Inheritance
 
 Inheritance diterapkan pada class komputer.
