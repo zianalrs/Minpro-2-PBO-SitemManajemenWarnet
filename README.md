@@ -260,11 +260,7 @@ Informasi transaksi yang ditampilkan meliputi:
 - Durasi penggunaan
 - Total pembayaran
 
-[ss riwayat transaksi]
-
-Jika belum terdapat transaksi, program akan menampilkan informasi bahwa belum ada transaksi yang tersimpan.
-
-[ss riwayat transaksi kosong]
+<img width="244" height="139" alt="image" src="https://github.com/user-attachments/assets/24e87cdf-a129-4923-8a16-0db7847413af" />
 
 ---
 
