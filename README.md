@@ -108,8 +108,6 @@ public void setNomor(int nomor) {
 
 Dengan demikian, data pada object `Komputer` dapat dikontrol melalui method yang telah disediakan.
 
-[ss kode encapsulation]
-
 ---
 
 # Penerapan Inheritance
@@ -151,8 +149,6 @@ Contohnya:
 super(nomor, spesifikasi, hargaPerJam);
 ```
 
-[ss kode inheritance]
-
 ---
 
 # Penerapan Nilai Tambah
@@ -190,7 +186,8 @@ private ArrayList<Komputer> daftarKomputer = new ArrayList<>();
 
 Dengan demikian, satu tipe `Komputer` dapat digunakan untuk menangani beberapa jenis object komputer.
 
-[ss kode polymorphism]
+<img width="888" height="236" alt="image" src="https://github.com/user-attachments/assets/2eea20d4-6fa6-49a0-9663-43c915c7aff7" />
+
 ---
 
 # Penjelasan Alur Program
