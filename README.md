@@ -295,42 +295,6 @@ Setiap pilihan menu akan diproses menggunakan `switch-case` dan menjalankan fung
 
 ---
 
-# Alur Singkat Program
-
-Secara keseluruhan, alur program dapat digambarkan sebagai berikut:
-
-```text
-Program dimulai
-       ↓
-   Menu Utama
-       ↓
-User memilih menu
-       ↓
- ┌─────┼──────────────┬───────────────┐
- ↓     ↓              ↓               ↓
-Lihat  Booking     Riwayat        Kelola
-Data   Komputer    Transaksi      Komputer
- ↓     ↓              ↓               ↓
-Data   Input        Data          Tambah/Ubah/
-tampil pelanggan    tampil        Hapus/Kosongkan
-       ↓
-    Validasi
-       ↓
-   Hitung biaya
-       ↓
-   Simpan transaksi
-       ↓
-  Kembali ke Menu Utama
-       ↓
-     Keluar
-       ↓
-Program selesai
-```
-
-Alur tersebut menggunakan `KomputerService` untuk mengelola data komputer dan `TransaksiService` untuk mengelola data transaksi.
-
----
-
 ## 1. Lihat Komputer
 
 Menu **Lihat Komputer** digunakan untuk menampilkan seluruh data komputer yang tersedia pada warnet.
