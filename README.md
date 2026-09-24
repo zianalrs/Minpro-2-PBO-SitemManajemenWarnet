@@ -157,59 +157,21 @@ super(nomor, spesifikasi, hargaPerJam);
 
 # Penerapan Nilai Tambah
 
-## 1. Struktur MVC
+## 1. MVC
 
-Program menerapkan pembagian struktur yang mengacu pada konsep MVC untuk memisahkan bagian data, proses, dan tampilan program.
+Program menerapkan struktur yang mengacu pada konsep MVC melalui pembagian package berdasarkan fungsi masing-masing. Package `Model` berisi class yang merepresentasikan data program, seperti `Komputer`, `KomputerReguler`, `KomputerVIP`, dan `Transaksi`. Package `Service` berisi proses pengelolaan data melalui class `KomputerService` dan `TransaksiService`. Package `Util` berisi class `Validasi` untuk membantu proses validasi input. Sementara itu, package `Main` berisi class `Warnet` yang digunakan untuk menampilkan menu, menerima input, dan mengatur alur program.
 
-Pembagian package pada program adalah sebagai berikut:
-
-### Model
-
-Package `Model` berisi class yang merepresentasikan data atau objek program, yaitu:
-
-- `Komputer`
-- `KomputerReguler`
-- `KomputerVIP`
-- `Transaksi`
-
-Bagian ini berfungsi sebagai tempat data dan objek yang digunakan dalam program.
-
-### Service
-
-Package `Service` berisi class yang menangani proses pengelolaan data, yaitu:
-
-- `KomputerService`
-- `TransaksiService`
-
-`KomputerService` menangani proses pengelolaan komputer, sedangkan `TransaksiService` menangani data transaksi.
-
-### Util
-
-Package `Util` berisi class bantuan yaitu `Validasi`.
-
-Class ini digunakan untuk membantu proses validasi dan pembacaan input user.
-
-### Main
-
-Package `Main` berisi class `Warnet`.
-
-Class ini digunakan untuk menampilkan menu, menerima input user, dan mengatur alur program.
+Pembagian tersebut membuat program lebih terstruktur karena bagian data, proses, dan alur utama program dipisahkan berdasarkan package masing-masing.
 
 [ss struktur package MVC]
-
-Pembagian tersebut membuat program lebih terstruktur karena data, proses pengelolaan, dan bagian utama program dipisahkan berdasarkan package masing-masing.
 
 ---
 
 ## 2. Polymorphism
 
-Polymorphism diterapkan melalui method overriding dan penggunaan tipe superclass untuk menangani beberapa subclass.
+Polymorphism diterapkan melalui method overriding pada class `KomputerReguler` dan `KomputerVIP`. Kedua class tersebut memiliki method `getKategori()` dan `tampilkanInfo()` dengan implementasi yang berbeda sesuai jenis komputer.
 
-### Method Overriding
-
-Class `KomputerReguler` dan `KomputerVIP` melakukan overriding terhadap method yang terdapat pada class `Komputer`.
-
-Contohnya pada `KomputerReguler`:
+Contohnya:
 
 ```java
 @Override
@@ -218,64 +180,17 @@ public String getKategori() {
 }
 ```
 
-Sedangkan pada `KomputerVIP`:
+Pada class `KomputerVIP`, method tersebut mengembalikan kategori `"VIP"`.
 
-```java
-@Override
-public String getKategori() {
-    return "VIP";
-}
-```
-
-Walaupun menggunakan nama method yang sama, hasil yang diberikan berbeda sesuai dengan jenis object.
-
-[ss kode overriding]
-
----
-
-### Polymorphism pada ArrayList
-
-Polymorphism juga diterapkan ketika object `KomputerReguler` dan `KomputerVIP` disimpan dalam satu `ArrayList` yang menggunakan tipe superclass `Komputer`.
-
-Contohnya:
+Polymorphism juga diterapkan melalui penggunaan `ArrayList<Komputer>` yang dapat menyimpan object `KomputerReguler` dan `KomputerVIP` dalam satu daftar.
 
 ```java
 private ArrayList<Komputer> daftarKomputer = new ArrayList<>();
 ```
 
-ArrayList tersebut dapat menyimpan object dari class yang berbeda, yaitu:
-
-```java
-daftarKomputer.add(new KomputerReguler(...));
-daftarKomputer.add(new KomputerVIP(...));
-```
-
 Dengan demikian, satu tipe `Komputer` dapat digunakan untuk menangani beberapa jenis object komputer.
 
 [ss kode polymorphism]
-
----
-
-### Overriding pada `tampilkanInfo()`
-
-Polymorphism juga diterapkan pada method `tampilkanInfo()`.
-
-Ketika program menjalankan:
-
-```java
-for (Komputer komputer : daftarKomputer) {
-    komputer.tampilkanInfo();
-}
-```
-
-method yang dijalankan akan menyesuaikan dengan jenis object.
-
-Jika object merupakan `KomputerReguler`, maka informasi komputer reguler yang ditampilkan.
-
-Jika object merupakan `KomputerVIP`, maka informasi tambahan mengenai fasilitas VIP dapat ditampilkan karena method tersebut memiliki implementasi yang berbeda pada subclass.
-
-[ss kode tampilkanInfo]
-
 ---
 
 # Penjelasan Alur Program
