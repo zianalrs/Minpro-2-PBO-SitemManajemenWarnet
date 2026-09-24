@@ -29,8 +29,6 @@ Class yang terdapat pada package ini yaitu:
 
 `Komputer` berfungsi sebagai superclass, sedangkan `KomputerReguler` dan `KomputerVIP` merupakan subclass dari `Komputer`.
 
-[ss struktur package Model]
-
 ---
 
 ### 2. Package Service
@@ -46,8 +44,6 @@ Class yang terdapat pada package ini yaitu:
 
 `TransaksiService` digunakan untuk menyimpan dan mengelola data transaksi booking komputer.
 
-[ss struktur package Service]
-
 ---
 
 ### 3. Package Util
@@ -56,8 +52,6 @@ Package `Util` berisi class bantuan yang digunakan dalam program.
 
 Pada package ini terdapat class `Validasi` yang digunakan untuk membantu membaca input angka dari user agar program tidak mengalami error ketika user memasukkan tipe data yang tidak sesuai.
 
-[ss struktur package Util]
-
 ---
 
 ### 4. Package Main
@@ -65,36 +59,6 @@ Pada package ini terdapat class `Validasi` yang digunakan untuk membantu membaca
 Package `Main` berisi class `Warnet` yang merupakan entry point dari program.
 
 Class `Warnet` digunakan untuk menampilkan menu, menerima input user, dan mengatur alur program.
-
-[ss struktur package Main]
-
----
-
-## Struktur Program
-
-Secara umum, struktur program adalah sebagai berikut:
-
-```text
-src
-└── main
-    └── java
-        └── ...
-            ├── Model
-            │   ├── Komputer
-            │   ├── KomputerReguler
-            │   ├── KomputerVIP
-            │   └── Transaksi
-            │
-            ├── Service
-            │   ├── KomputerService
-            │   └── TransaksiService
-            │
-            ├── Util
-            │   └── Validasi
-            │
-            └── Main
-                └── Warnet
-```
 
 ---
 
