@@ -316,17 +316,10 @@ Menu **Ubah Data Komputer** digunakan untuk mengubah data komputer yang sudah te
 
 Menu **Hapus Komputer** digunakan untuk menghapus komputer dari daftar komputer.
 
-User memasukkan nomor komputer yang ingin dihapus.
+<img width="419" height="34" alt="image" src="https://github.com/user-attachments/assets/10b41c12-6353-41c0-bdbf-584a34846bd0" />
 
-[ss input hapus komputer]
-
-Program akan mencari komputer berdasarkan nomor yang dimasukkan. Jika komputer ditemukan, data komputer akan dihapus dari daftar.
-
-[ss hapus komputer berhasil]
-
-Jika nomor komputer tidak ditemukan, program akan memberikan pesan bahwa komputer tidak tersedia.
-
-[ss hapus komputer gagal]
+- User memasukkan nomor komputer yang ingin dihapus.
+- Program akan mencari komputer berdasarkan nomor yang dimasukkan. Jika komputer ditemukan, data komputer akan dihapus dari daftar.
 
 ---
 
@@ -334,15 +327,11 @@ Jika nomor komputer tidak ditemukan, program akan memberikan pesan bahwa kompute
 
 Menu **Kosongkan Komputer** digunakan untuk mengubah status komputer yang sebelumnya sedang digunakan menjadi tersedia kembali.
 
-User memasukkan nomor komputer yang ingin dikosongkan.
+<img width="449" height="40" alt="image" src="https://github.com/user-attachments/assets/b97e9cf7-5a38-4aa9-bbc5-3b81526f5b1c" />
 
-[ss input kosongkan komputer]
-
-Jika komputer ditemukan, status `sedangDipakai` akan diubah menjadi `false`.
-
-Dengan demikian, komputer tersebut dapat digunakan kembali untuk booking berikutnya.
-
-[ss komputer berhasil dikosongkan]
+- User memasukkan nomor komputer yang ingin dikosongkan.
+- Jika komputer ditemukan, status `sedangDipakai` akan diubah menjadi `false`.
+- Dengan demikian, komputer tersebut dapat digunakan kembali untuk booking berikutnya.
 
 ---
 
@@ -352,4 +341,5 @@ Menu **Keluar** digunakan untuk menghentikan program.
 
 Ketika user memilih menu keluar, perulangan pada menu utama akan berhenti dan program selesai dijalankan.
 
-[ss keluar program]
+<img width="360" height="43" alt="image" src="https://github.com/user-attachments/assets/1b32ffa0-020d-43ad-8327-28c2d3e15ce7" />
+
