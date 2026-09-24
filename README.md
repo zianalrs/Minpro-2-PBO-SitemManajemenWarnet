@@ -228,13 +228,10 @@ Karena `KomputerReguler` dan `KomputerVIP` memiliki implementasi method yang ber
 
 Menu **Booking Komputer** digunakan untuk melakukan penyewaan komputer oleh pelanggan.
 
-1. Pertama, user memasukkan nomor komputer yang ingin digunakan.
-
-2. Program kemudian melakukan pengecekan terhadap komputer tersebut. Jika nomor komputer tidak ditemukan atau komputer sedang digunakan, program akan menampilkan pesan dan proses booking tidak dapat dilanjutkan.
-
-3. Jika komputer tersedia, user diminta memasukkan nama pelanggan dan durasi penggunaan komputer.
-
-4. Setelah seluruh data dimasukkan, program menghitung total biaya berdasarkan durasi penggunaan dan harga komputer per jam.
+- Pertama, user memasukkan nomor komputer yang ingin digunakan.
+- Program kemudian melakukan pengecekan terhadap komputer tersebut. Jika nomor komputer tidak ditemukan atau komputer sedang digunakan, program akan menampilkan pesan dan proses booking tidak dapat dilanjutkan.
+- Jika komputer tersedia, user diminta memasukkan nama pelanggan dan durasi penggunaan komputer.
+- Setelah seluruh data dimasukkan, program menghitung total biaya berdasarkan durasi penggunaan dan harga komputer per jam.
 
 Rumus yang digunakan adalah:
 
