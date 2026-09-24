@@ -1,97 +1,510 @@
-# **Sistem Manajemen Warnet**
+# Sistem Manajemen Warnet
 
 ---
 
 ## Deskripsi Program
 
-Program ini adalah aplikasi CRUD berbasis console yang dibuat menggunakan Java dengan konsep OOP (Object Oriented Programming), meliputi encapsulation, inheritance, dan polymorphism. Program ini mensimulasikan sistem manajemen komputer pada sebuah warnet, di mana pengelola bisa melihat, menambah, mengubah, menghapus, serta mengatur status pemakaian (booking) tiap unit komputer. Komputer dibedakan jadi dua kategori — Reguler dan VIP — dan setiap booking yang berhasil otomatis tercatat sebagai transaksi lengkap dengan total biayanya. Data disimpan sementara menggunakan ArrayList selama program berjalan, sehingga akan kembali ke kondisi awal (dummy data) setiap kali program dijalankan ulang.
+Program ini adalah aplikasi CRUD berbasis console yang dibuat menggunakan bahasa Java dengan menerapkan konsep Object Oriented Programming (OOP). Program ini dibuat untuk mensimulasikan sistem manajemen komputer pada sebuah warnet.
+
+Program dapat digunakan untuk melihat, menambah, mengubah, dan menghapus data komputer, melakukan booking komputer, serta melihat riwayat transaksi. Komputer pada program dibedakan menjadi dua kategori, yaitu Komputer Reguler dan Komputer VIP.
+
+Data program disimpan menggunakan `ArrayList` selama program berjalan. Ketika program dijalankan kembali, data akan kembali menggunakan data awal (dummy data).
 
 ---
 
 ## Struktur Package
 
-Program ini dibagi ke dalam 4 package berdasarkan tanggung jawabnya masing-masing:
+Program dibagi menjadi beberapa package berdasarkan fungsi masing-masing.
 
-- **Model** — berisi class entitas: `Komputer` (superclass), `KomputerReguler` dan `KomputerVIP` (subclass), serta `Transaksi`. Class-class ini murni menyimpan data dan aturan validasinya sendiri lewat setter.
-- **Service** — berisi `KomputerService` dan `TransaksiService`, yang menyimpan data dalam ArrayList dan menangani seluruh logic CRUD serta pencarian data.
-- **Util** — berisi `Validasi`, class bantu untuk membaca input angka dari user dengan aman (mencegah program crash kalau salah tipe data).
-- **Main** — berisi `Warnet`, entry point program yang menampilkan menu, membaca input, dan menjalankan percabangan serta perulangan untuk mengontrol alur program.
+### 1. Package Model
 
-**Catatan mengenai arsitektur:** struktur ini terinspirasi dari pola MVC (Model-View-Controller), tapi bukan MVC murni. Pada MVC asli, bagian tampilan (View) dan bagian pengendali alur/input (Controller) dipisah jadi dua class berbeda. Pada program ini, kedua peran tersebut masih digabung dalam satu class `Warnet` di package `Main` — class ini yang menampilkan menu sekaligus menangani input dan percabangan. Sebagai gantinya, program menambahkan package `Service` yang tidak ada di MVC klasik, berfungsi sebagai lapisan pemisah antara `Model` (data) dan `Main` (tampilan + kontrol), supaya `Main` tidak perlu memanipulasi ArrayList secara langsung. Jadi pola yang dipakai lebih tepat disebut **Model-Service Layer**, bukan MVC murni.
+Package `Model` berisi class yang digunakan untuk merepresentasikan data atau objek dalam program.
 
----
+Class yang terdapat pada package ini yaitu:
 
-## Penerapan Inheritance & Polymorphism
+- `Komputer`
+- `KomputerReguler`
+- `KomputerVIP`
+- `Transaksi`
 
-`Komputer` merupakan superclass yang menyimpan atribut dan method umum (nomor, spesifikasi, harga per jam, status pemakaian). `KomputerReguler` dan `KomputerVIP` adalah subclass yang mewarisi semua itu lewat `extends` dan `super(...)`, lalu meng-override method `getKategori()` untuk menentukan kategorinya masing-masing (contoh *method overriding* dengan `@Override`). Khusus `KomputerVIP`, ada tambahan fasilitas yang disimpan sebagai konstanta `final` (sama untuk semua unit VIP) dan method `tampilkanInfo()` yang di-override untuk menampilkan info tambahan itu.
+`Komputer` berfungsi sebagai superclass, sedangkan `KomputerReguler` dan `KomputerVIP` merupakan subclass dari `Komputer`.
 
-Objek `KomputerReguler` dan `KomputerVIP` disimpan bersama dalam satu `ArrayList<Komputer>` di `KomputerService` — ini adalah contoh *heterogeneous list*, di mana satu ArrayList bertipe superclass bisa menampung objek dari beberapa subclass yang berbeda sekaligus (polymorphism).
-
----
-
-## Fitur Program
-
-- Melihat seluruh data komputer beserta kategorinya
-- Membooking komputer yang kosong, lengkap dengan input nama pelanggan dan durasi sewa, serta perhitungan otomatis total bayar
-- Melihat riwayat seluruh transaksi booking yang pernah terjadi
-- Mengelola data komputer: tambah (dengan pilihan kategori Reguler/VIP), ubah, hapus, dan kosongkan kembali
-- Validasi tipe data input (angka) agar program tidak crash
-- Validasi nilai data (harga, nomor, nama, durasi) langsung di dalam setter class model
-- Program berjalan terus-menerus sampai user memilih keluar
+[ss struktur package Model]
 
 ---
 
-## Penjelasan Alur Program
+### 2. Package Service
 
-Program dimulai dari method `main` di class `Warnet`. Di dalamnya dibuat objek `KomputerService`, `TransaksiService`, dan `Validasi`, yang dipakai berulang kali selama program berjalan.
+Package `Service` digunakan untuk menangani proses atau logic utama program.
 
-Menu utama ditampilkan lewat perulangan `while` selama variabel `lanjut` masih `true`, dan setiap pilihan diproses lewat percabangan `switch-case`. Menu "Kelola Komputer" membuka submenu tersendiri lewat method terpisah (`kelolaKomputer`), yang juga punya perulangannya sendiri sampai user memilih kembali ke menu utama.
+Class yang terdapat pada package ini yaitu:
 
-[SS Output Tampilan Menu Utama]
+- `KomputerService`
+- `TransaksiService`
 
----
+`KomputerService` digunakan untuk mengelola data komputer yang disimpan dalam `ArrayList`, seperti menambah, mencari, mengubah, menghapus, dan mengosongkan komputer.
 
-### **1. Lihat Komputer**
+`TransaksiService` digunakan untuk menyimpan dan mengelola data transaksi booking komputer.
 
-Menampilkan seluruh data komputer di ArrayList menggunakan perulangan `for`, memanggil `tampilkanInfo()` di tiap objeknya — untuk komputer VIP, info fasilitas tambahan otomatis ikut tampil karena method ini di-override.
-
-[SS Output Lihat Komputer]
-
----
-
-### **2. Booking Komputer**
-
-User memasukkan nomor komputer yang ingin dibooking. Kalau komputernya kosong, program meminta nama pelanggan dan durasi sewa, lalu menghitung total bayar (durasi × harga per jam) dan mencatatnya sebagai objek `Transaksi` baru lewat `TransaksiService`. Kalau komputer sudah dipakai atau nomornya tidak ditemukan, booking dibatalkan dengan pesan yang sesuai.
-
-[SS Output Booking Komputer]
+[ss struktur package Service]
 
 ---
 
-### **3. Riwayat Transaksi**
+### 3. Package Util
 
-Menampilkan seluruh transaksi booking yang tersimpan di `TransaksiService`, lengkap dengan ID transaksi, nama pelanggan, nomor komputer, durasi, dan total bayar. Kalau belum ada transaksi sama sekali, program menampilkan pesan bahwa riwayat masih kosong.
+Package `Util` berisi class bantuan yang digunakan dalam program.
 
-[SS Output Riwayat Transaksi]
+Pada package ini terdapat class `Validasi` yang digunakan untuk membantu membaca input angka dari user agar program tidak mengalami error ketika user memasukkan tipe data yang tidak sesuai.
 
----
-
-### **4. Kelola Komputer**
-
-Membuka submenu dengan 4 pilihan:
-
-- **Tambah Komputer** — user mengisi nomor, spesifikasi, dan harga, lalu memilih kategori (Reguler/VIP). Nomor yang sudah dipakai tidak bisa dipakai lagi.
-- **Ubah Data Komputer** — mengubah spesifikasi dan harga komputer yang sudah ada berdasarkan nomor.
-- **Hapus Komputer** — menghapus data komputer berdasarkan nomor.
-- **Kosongkan Komputer** — mengubah status komputer yang sedang dipakai kembali menjadi kosong.
-
-Semua aksi di submenu ini akan menolak diproses kalau ArrayList komputer masih kosong.
-
-[SS Output Kelola Komputer]
+[ss struktur package Util]
 
 ---
 
-### **5. Keluar**
+### 4. Package Main
 
-Menghentikan perulangan `while` di menu utama, sehingga program berhenti berjalan.
+Package `Main` berisi class `Warnet` yang merupakan entry point dari program.
 
-[SS Output Keluar Program]
+Class `Warnet` digunakan untuk menampilkan menu, menerima input user, dan mengatur alur program.
+
+[ss struktur package Main]
+
+---
+
+## Struktur Program
+
+Secara umum, struktur program adalah sebagai berikut:
+
+```text
+src
+└── main
+    └── java
+        └── ...
+            ├── Model
+            │   ├── Komputer
+            │   ├── KomputerReguler
+            │   ├── KomputerVIP
+            │   └── Transaksi
+            │
+            ├── Service
+            │   ├── KomputerService
+            │   └── TransaksiService
+            │
+            ├── Util
+            │   └── Validasi
+            │
+            └── Main
+                └── Warnet
+```
+
+---
+
+# Fitur Program
+
+Program memiliki beberapa fitur utama, yaitu:
+
+- Melihat seluruh data komputer
+- Melakukan booking komputer
+- Melihat riwayat transaksi
+- Menambah data komputer
+- Mengubah data komputer
+- Menghapus data komputer
+- Mengosongkan status komputer
+- Memilih kategori komputer Reguler atau VIP
+- Validasi input
+- Validasi data melalui setter
+- Perhitungan total biaya booking
+- Program berjalan terus sampai user memilih menu keluar
+
+---
+
+# Penerapan Inheritance
+
+Inheritance diterapkan pada class komputer.
+
+Class `Komputer` digunakan sebagai superclass, sedangkan:
+
+- `KomputerReguler`
+- `KomputerVIP`
+
+merupakan subclass.
+
+Hubungan inheritance ditunjukkan dengan penggunaan `extends`.
+
+Contohnya:
+
+```java
+public class KomputerReguler extends Komputer {
+
+}
+```
+
+dan:
+
+```java
+public class KomputerVIP extends Komputer {
+
+}
+```
+
+Subclass tersebut dapat menggunakan atribut dan method yang dimiliki oleh superclass `Komputer`.
+
+Pada constructor subclass juga digunakan `super(...)` untuk memanggil constructor dari superclass.
+
+Contohnya:
+
+```java
+super(nomor, spesifikasi, hargaPerJam);
+```
+
+[ss kode inheritance]
+
+---
+
+# Penerapan Nilai Tambah
+
+## 1. Struktur MVC
+
+Program menerapkan pembagian struktur yang mengacu pada konsep MVC untuk memisahkan bagian data, proses, dan tampilan program.
+
+Pembagian package pada program adalah sebagai berikut:
+
+### Model
+
+Package `Model` berisi class yang merepresentasikan data atau objek program, yaitu:
+
+- `Komputer`
+- `KomputerReguler`
+- `KomputerVIP`
+- `Transaksi`
+
+Bagian ini berfungsi sebagai tempat data dan objek yang digunakan dalam program.
+
+### Service
+
+Package `Service` berisi class yang menangani proses pengelolaan data, yaitu:
+
+- `KomputerService`
+- `TransaksiService`
+
+`KomputerService` menangani proses pengelolaan komputer, sedangkan `TransaksiService` menangani data transaksi.
+
+### Util
+
+Package `Util` berisi class bantuan yaitu `Validasi`.
+
+Class ini digunakan untuk membantu proses validasi dan pembacaan input user.
+
+### Main
+
+Package `Main` berisi class `Warnet`.
+
+Class ini digunakan untuk menampilkan menu, menerima input user, dan mengatur alur program.
+
+[ss struktur package MVC]
+
+Pembagian tersebut membuat program lebih terstruktur karena data, proses pengelolaan, dan bagian utama program dipisahkan berdasarkan package masing-masing.
+
+---
+
+## 2. Polymorphism
+
+Polymorphism diterapkan melalui method overriding dan penggunaan tipe superclass untuk menangani beberapa subclass.
+
+### Method Overriding
+
+Class `KomputerReguler` dan `KomputerVIP` melakukan overriding terhadap method yang terdapat pada class `Komputer`.
+
+Contohnya pada `KomputerReguler`:
+
+```java
+@Override
+public String getKategori() {
+    return "Reguler";
+}
+```
+
+Sedangkan pada `KomputerVIP`:
+
+```java
+@Override
+public String getKategori() {
+    return "VIP";
+}
+```
+
+Walaupun menggunakan nama method yang sama, hasil yang diberikan berbeda sesuai dengan jenis object.
+
+[ss kode overriding]
+
+---
+
+### Polymorphism pada ArrayList
+
+Polymorphism juga diterapkan ketika object `KomputerReguler` dan `KomputerVIP` disimpan dalam satu `ArrayList` yang menggunakan tipe superclass `Komputer`.
+
+Contohnya:
+
+```java
+private ArrayList<Komputer> daftarKomputer = new ArrayList<>();
+```
+
+ArrayList tersebut dapat menyimpan object dari class yang berbeda, yaitu:
+
+```java
+daftarKomputer.add(new KomputerReguler(...));
+daftarKomputer.add(new KomputerVIP(...));
+```
+
+Dengan demikian, satu tipe `Komputer` dapat digunakan untuk menangani beberapa jenis object komputer.
+
+[ss kode polymorphism]
+
+---
+
+### Overriding pada `tampilkanInfo()`
+
+Polymorphism juga diterapkan pada method `tampilkanInfo()`.
+
+Ketika program menjalankan:
+
+```java
+for (Komputer komputer : daftarKomputer) {
+    komputer.tampilkanInfo();
+}
+```
+
+method yang dijalankan akan menyesuaikan dengan jenis object.
+
+Jika object merupakan `KomputerReguler`, maka informasi komputer reguler yang ditampilkan.
+
+Jika object merupakan `KomputerVIP`, maka informasi tambahan mengenai fasilitas VIP dapat ditampilkan karena method tersebut memiliki implementasi yang berbeda pada subclass.
+
+[ss kode tampilkanInfo]
+
+---
+
+# Penjelasan Alur Program
+
+Program dimulai dengan menjalankan class `Warnet`. Setelah program dijalankan, sistem akan menampilkan menu utama yang berisi beberapa pilihan untuk mengelola komputer, melakukan booking, melihat transaksi, dan keluar dari program.
+
+[ss menu utama]
+
+User dapat memilih menu dengan memasukkan nomor sesuai pilihan yang tersedia. Program menggunakan perulangan `while` sehingga menu utama akan terus ditampilkan sampai user memilih menu keluar.
+
+Setiap pilihan menu akan diproses menggunakan `switch-case` dan menjalankan fungsi sesuai dengan pilihan user.
+
+---
+
+# Alur Singkat Program
+
+Secara keseluruhan, alur program dapat digambarkan sebagai berikut:
+
+```text
+Program dimulai
+       ↓
+   Menu Utama
+       ↓
+User memilih menu
+       ↓
+ ┌─────┼──────────────┬───────────────┐
+ ↓     ↓              ↓               ↓
+Lihat  Booking     Riwayat        Kelola
+Data   Komputer    Transaksi      Komputer
+ ↓     ↓              ↓               ↓
+Data   Input        Data          Tambah/Ubah/
+tampil pelanggan    tampil        Hapus/Kosongkan
+       ↓
+    Validasi
+       ↓
+   Hitung biaya
+       ↓
+   Simpan transaksi
+       ↓
+  Kembali ke Menu Utama
+       ↓
+     Keluar
+       ↓
+Program selesai
+```
+
+Alur tersebut menggunakan `KomputerService` untuk mengelola data komputer dan `TransaksiService` untuk mengelola data transaksi.
+
+---
+
+## 1. Lihat Komputer
+
+Menu **Lihat Komputer** digunakan untuk menampilkan seluruh data komputer yang tersedia pada warnet.
+
+Ketika menu ini dipilih, program mengambil data komputer dari `KomputerService` kemudian menampilkan informasi setiap komputer.
+
+Informasi yang ditampilkan meliputi:
+
+- Nomor komputer
+- Spesifikasi
+- Harga per jam
+- Kategori komputer
+- Status komputer
+
+[ss menu lihat komputer]
+
+Pada menu ini, komputer Reguler dan komputer VIP ditampilkan menggunakan method `tampilkanInfo()` yang terdapat pada class `Komputer`.
+
+Karena `KomputerReguler` dan `KomputerVIP` memiliki implementasi method yang berbeda, informasi yang ditampilkan dapat menyesuaikan dengan jenis komputer.
+
+---
+
+## 2. Booking Komputer
+
+Menu **Booking Komputer** digunakan untuk melakukan penyewaan komputer oleh pelanggan.
+
+Pertama, user memasukkan nomor komputer yang ingin digunakan.
+
+[ss pilih komputer booking]
+
+Program kemudian melakukan pengecekan terhadap komputer tersebut. Jika nomor komputer tidak ditemukan atau komputer sedang digunakan, program akan menampilkan pesan dan proses booking tidak dapat dilanjutkan.
+
+[ss validasi komputer booking]
+
+Jika komputer tersedia, user diminta memasukkan nama pelanggan dan durasi penggunaan komputer.
+
+[ss input data booking]
+
+Setelah seluruh data dimasukkan, program menghitung total biaya berdasarkan durasi penggunaan dan harga komputer per jam.
+
+Rumus yang digunakan adalah:
+
+```text
+Total Bayar = Durasi × Harga per Jam
+```
+
+Setelah proses berhasil, status komputer akan berubah menjadi sedang digunakan dan data transaksi akan disimpan ke dalam `TransaksiService`.
+
+[ss booking berhasil]
+
+---
+
+## 3. Riwayat Transaksi
+
+Menu **Riwayat Transaksi** digunakan untuk melihat transaksi booking yang telah dilakukan.
+
+Program mengambil data transaksi dari `TransaksiService` kemudian menampilkan seluruh transaksi yang tersimpan.
+
+Informasi transaksi yang ditampilkan meliputi:
+
+- ID transaksi
+- Nama pelanggan
+- Nomor komputer
+- Durasi penggunaan
+- Total pembayaran
+
+[ss riwayat transaksi]
+
+Jika belum terdapat transaksi, program akan menampilkan informasi bahwa belum ada transaksi yang tersimpan.
+
+[ss riwayat transaksi kosong]
+
+---
+
+## 4. Kelola Komputer
+
+Menu **Kelola Komputer** digunakan untuk mengelola data komputer yang terdapat pada warnet.
+
+Pada menu ini terdapat beberapa pilihan, yaitu menambah, mengubah, menghapus, dan mengosongkan komputer.
+
+[ss menu kelola komputer]
+
+---
+
+### 4.1 Tambah Komputer
+
+Menu **Tambah Komputer** digunakan untuk menambahkan komputer baru ke dalam daftar komputer.
+
+User diminta memasukkan beberapa data seperti:
+
+- Nomor komputer
+- Spesifikasi
+- Harga per jam
+- Jenis komputer
+
+Jenis komputer yang tersedia adalah:
+
+- Reguler
+- VIP
+
+[ss tambah komputer]
+
+Setelah data dimasukkan, program akan melakukan validasi terhadap data tersebut.
+
+Program juga melakukan pengecekan terhadap nomor komputer. Jika nomor komputer sudah digunakan, komputer baru tidak dapat ditambahkan dengan nomor yang sama.
+
+[ss validasi nomor komputer]
+
+Jika seluruh data valid, komputer akan ditambahkan ke dalam `ArrayList` dan dapat dilihat melalui menu Lihat Komputer.
+
+[ss tambah komputer berhasil]
+
+---
+
+### 4.2 Ubah Data Komputer
+
+Menu **Ubah Data Komputer** digunakan untuk mengubah data komputer yang sudah tersimpan.
+
+User memasukkan nomor komputer yang ingin diubah.
+
+[ss pilih komputer untuk diubah]
+
+Jika komputer ditemukan, user dapat mengubah data seperti spesifikasi dan harga per jam.
+
+[ss input ubah komputer]
+
+Setelah data baru dimasukkan, program melakukan validasi kemudian memperbarui data komputer tersebut.
+
+[ss ubah komputer berhasil]
+
+Jika nomor komputer tidak ditemukan, program akan menampilkan pesan bahwa data komputer tidak tersedia.
+
+[ss komputer tidak ditemukan]
+
+---
+
+### 4.3 Hapus Komputer
+
+Menu **Hapus Komputer** digunakan untuk menghapus komputer dari daftar komputer.
+
+User memasukkan nomor komputer yang ingin dihapus.
+
+[ss input hapus komputer]
+
+Program akan mencari komputer berdasarkan nomor yang dimasukkan. Jika komputer ditemukan, data komputer akan dihapus dari daftar.
+
+[ss hapus komputer berhasil]
+
+Jika nomor komputer tidak ditemukan, program akan memberikan pesan bahwa komputer tidak tersedia.
+
+[ss hapus komputer gagal]
+
+---
+
+### 4.4 Kosongkan Komputer
+
+Menu **Kosongkan Komputer** digunakan untuk mengubah status komputer yang sebelumnya sedang digunakan menjadi tersedia kembali.
+
+User memasukkan nomor komputer yang ingin dikosongkan.
+
+[ss input kosongkan komputer]
+
+Jika komputer ditemukan, status `sedangDipakai` akan diubah menjadi `false`.
+
+Dengan demikian, komputer tersebut dapat digunakan kembali untuk booking berikutnya.
+
+[ss komputer berhasil dikosongkan]
+
+---
+
+## 5. Keluar Program
+
+Menu **Keluar** digunakan untuk menghentikan program.
+
+Ketika user memilih menu keluar, perulangan pada menu utama akan berhenti dan program selesai dijalankan.
+
+[ss keluar program]
