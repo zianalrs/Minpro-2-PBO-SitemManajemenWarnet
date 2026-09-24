@@ -2,25 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.warnet;
+package Service;
 import java.util.ArrayList;
+import Model.Komputer;
+import Model.KomputerReguler;
+import Model.KomputerVIP;
 /**
  *
  * @author LOQ
  */
 
 public class KomputerService {
-    ArrayList<Komputer> daftarKomputer;
+    private ArrayList<Komputer> daftarKomputer;
  
     public KomputerService() {
         daftarKomputer = new ArrayList<>();
  
-        Komputer pc1 = new Komputer(1, "Ryzen 5 5600, RTX 3050 Ti, RAM 16GB", 5000);
-        pc1.dipakai = true;
+        KomputerReguler pc1 = new KomputerReguler(1, "Ryzen 5 5600, RTX 3050 Ti, RAM 16GB");
+        pc1.setDipakai(true);
         daftarKomputer.add(pc1);
  
-        Komputer pc2 = new Komputer(2, "Intel i5-12400F, RTX 3060, RAM 16GB", 6000);
+        KomputerVIP pc2 = new KomputerVIP(2, "Intel i7-13700F, RTX 4070, RAM 32GB");
         daftarKomputer.add(pc2);
+    }
+ 
+    public boolean adaData() {
+        return !daftarKomputer.isEmpty();
     }
  
     public void tambah(Komputer komputer) {
@@ -41,20 +48,19 @@ public class KomputerService {
  
     public Komputer cariByNomor(int nomor) {
         for (int i = 0; i < daftarKomputer.size(); i++) {
-            if (daftarKomputer.get(i).nomor == nomor) {
+            if (daftarKomputer.get(i).getNomor() == nomor) {
                 return daftarKomputer.get(i);
             }
         }
         return null;
     }
  
-    public boolean ubah(int nomor, String spesifikasiBaru, double hargaBaru) {
+    public boolean ubah(int nomor, String spesifikasiBaru) {
         Komputer k = cariByNomor(nomor);
         if (k == null) {
             return false;
         }
-        k.spesifikasi = spesifikasiBaru;
-        k.hargaPerJam = hargaBaru;
+        k.setSpesifikasi(spesifikasiBaru);
         return true;
     }
  
@@ -72,10 +78,10 @@ public class KomputerService {
         if (k == null) {
             return "tidak_ditemukan";
         }
-        if (k.dipakai) {
+        if (k.isDipakai()) {
             return "sudah_dipakai";
         }
-        k.dipakai = true;
+        k.setDipakai(true);
         return "berhasil";
     }
  
@@ -84,10 +90,10 @@ public class KomputerService {
         if (k == null) {
             return "tidak_ditemukan";
         }
-        if (!k.dipakai) {
+        if (!k.isDipakai()) {
             return "belum_dipakai";
         }
-        k.dipakai = false;
+        k.setDipakai(false);
         return "berhasil";
     }
 }
