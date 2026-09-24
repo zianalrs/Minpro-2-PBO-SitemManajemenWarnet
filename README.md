@@ -302,21 +302,13 @@ Jika seluruh data valid, komputer akan ditambahkan ke dalam `ArrayList` dan dapa
 
 Menu **Ubah Data Komputer** digunakan untuk mengubah data komputer yang sudah tersimpan.
 
-User memasukkan nomor komputer yang ingin diubah.
+<img width="425" height="56" alt="image" src="https://github.com/user-attachments/assets/adb0a231-4968-457e-8975-c445f8744c4a" />
 
-[ss pilih komputer untuk diubah]
+- User memasukkan nomor komputer yang ingin diubah.
 
-Jika komputer ditemukan, user dapat mengubah data seperti spesifikasi dan harga per jam.
+- Jika komputer ditemukan, user dapat mengubah data seperti spesifikasi dan harga per jam.
 
-[ss input ubah komputer]
-
-Setelah data baru dimasukkan, program melakukan validasi kemudian memperbarui data komputer tersebut.
-
-[ss ubah komputer berhasil]
-
-Jika nomor komputer tidak ditemukan, program akan menampilkan pesan bahwa data komputer tidak tersedia.
-
-[ss komputer tidak ditemukan]
+- Setelah data baru dimasukkan, program melakukan validasi kemudian memperbarui data komputer tersebut.
 
 ---
 
