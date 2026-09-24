@@ -1,5 +1,7 @@
 # Sistem Manajemen Warnet
 
+---
+
 ## Deskripsi Program
 
 Program ini adalah aplikasi CRUD berbasis console yang dibuat menggunakan bahasa Java dengan menerapkan konsep Object Oriented Programming (OOP). Program ini dibuat untuk mensimulasikan sistem manajemen komputer pada sebuah warnet.
