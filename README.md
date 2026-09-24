@@ -161,12 +161,9 @@ super(nomor, spesifikasi, hargaPerJam);
 
 Program memiliki struktur yang mengacu pada konsep MVC melalui pembagian package berdasarkan fungsi masing-masing. Package `Model` berisi data dan objek program seperti `Komputer`, `KomputerReguler`, `KomputerVIP`, dan `Transaksi`. Package `Service` menangani proses pengelolaan data melalui `KomputerService` dan `TransaksiService`. Package `Util` berisi `Validasi` untuk membantu proses validasi input, sedangkan package `Main` berisi `Warnet` yang menangani tampilan menu, input user, dan alur utama program.
 
-Struktur ini membuat program lebih terorganisir karena bagian data, proses, validasi, dan alur utama program dipisahkan ke dalam package masing-masing.
-
-[ss struktur package]
-
 <img width="276" height="308" alt="image" src="https://github.com/user-attachments/assets/e00d7d15-e257-42a5-9bcd-8ac105f92a19" />
 
+Struktur ini membuat program lebih terorganisir karena bagian data, proses, validasi, dan alur utama program dipisahkan ke dalam package masing-masing.
 
 ---
 
